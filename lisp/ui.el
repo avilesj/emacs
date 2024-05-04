@@ -11,4 +11,8 @@
 
 ;;(add-to-list 'default-frame-alist '(font . "JetBrains Mono")) ;; Set your favorite font
 (setq-default line-spacing 0.12)
+(setq display-line-numbers 'relative)
+
+;; Maximize window
+(add-to-list 'default-frame-alist '(fullscreen . fullboth))
 (provide 'ui)

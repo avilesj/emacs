@@ -8,9 +8,10 @@
     :global-prefix "C-SPC") ;; Set global leader key
 
   (start/leader-keys
-    "SPC" '(find-file :wk "Find file")
+    "SPC" '(helm-find-files :wk "Find file")
+    "/" '(helm-rg :wk "Grep file")
     "TAB" '(av/switch-to-previous-buffer :wk "Previous buffer")
-    "p" '(projectile-command-map :wk "Projectile command map"))
+   ) 
 
   (start/leader-keys
     "f" '(:ignore t :wk "Find")
@@ -57,6 +58,13 @@
             :wk "Reload Emacs config"))
 
   (start/leader-keys
+    "p" '(:ignore t :wk "Projectile command map")
+    "p P" '(helm-projectile-switch-project :wk "Switch project")
+    "p f" '(helm-projectile-find-file :wk "Find file")
+    "p g" '(helm-projectile-rg :wk "Grep files")
+    "p F" '(helm-projectile-find-file-in-known-projects :wk "Find file - all projects")
+)
+  (start/leader-keys
     "s" '(:ignore t :wk "Show")
     "s e" '(eat :wk "Eat terminal"))
 
@@ -65,4 +73,9 @@
     "t t" '(visual-line-mode :wk "Toggle truncated lines (wrap)")
     "t l" '(display-line-numbers-mode :wk "Toggle line numbers"))
 
+  (start/leader-keys
+    "w" '(:ignore t :wk "Window")
+    "d" '(delete-window :wk "Delete")
+    "m" '(delete-other-windows :wk "Maximize")
+	)
 (provide 'keybinds)

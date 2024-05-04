@@ -1,3 +1,4 @@
+
 ;; Kickstart.emacs is *not* a distribution.
 ;; It's a template for your own configuration.
 
@@ -13,6 +14,7 @@
 (require 'util)
 (require 'packages)
 (require 'keybinds)
+(require 'autoload)
 
 (defun start/org-babel-tangle-config ()
   "Automatically tangle our Emacs.org config file when we save it. Credit to Emacs From Scratch for this one!"

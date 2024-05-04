@@ -15,23 +15,23 @@
 
   (start/leader-keys
     "f" '(:ignore t :wk "Find")
-    "f c" '((lambda () (interactive) (find-file "~/.config/emacs/config.org")) :wk "Edit emacs config")
-    "f r" '(consult-recent-file :wk "Recent files")
-    "f f" '(consult-fd :wk "Fd search for files")
-    "f g" '(consult-ripgrep :wk "Ripgrep search in files")
-    "f l" '(consult-line :wk "Find line")
+    "f c" '((lambda () (interactive) (find-file "~/.config/emacs/init.el")) :wk "Edit emacs config")
+    "f r" '(helm-recentf :wk "Recent files")
+    "f f" '(helm-find-files :wk "Search for files")
+    "f g" '(helm-rg :wk "Ripgrep search in files")
+    "f l" '(helm-find :wk "Find line")
     "f i" '(consult-imenu :wk "Imenu buffer locations"))
 
   (start/leader-keys
-    "," '(consult-buffer :wk "Switch buffer")
+    "," '(helm-buffers-list :wk "Switch buffer")
     "b" '(:ignore t :wk "Buffer Bookmarks")
-    "b b" '(consult-buffer :wk "Switch buffer")
+    "b b" '(helm-buffers-list :wk "Switch buffer")
     "b d" '(kill-this-buffer :wk "Delete this buffer")
     "b i" '(ibuffer :wk "Ibuffer")
     "b n" '(next-buffer :wk "Next buffer")
     "b p" '(previous-buffer :wk "Previous buffer")
     "b r" '(revert-buffer :wk "Reload buffer")
-    "b j" '(consult-bookmark :wk "Bookmark jump"))
+    )
 
   (start/leader-keys
     "d" '(:ignore t :wk "Dired")
@@ -75,7 +75,8 @@
 
   (start/leader-keys
     "w" '(:ignore t :wk "Window")
-    "d" '(delete-window :wk "Delete")
-    "m" '(delete-other-windows :wk "Maximize")
+    "w d" '(delete-window :wk "Delete")
+    "w m" '(delete-other-windows :wk "Maximize")
+    "w w" '(other-window :wk "Other window")
 	)
 (provide 'keybinds)

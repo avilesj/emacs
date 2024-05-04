@@ -27,9 +27,8 @@
   :after evil
   :config
   ;; Setting where to use evil-collection
-  (setq evil-collection-mode-list '(dired ibuffer magit corfu vertico helm org))
+  (setq evil-collection-mode-list '(dired ibuffer magit corfu helm org))
   (evil-collection-init))
-
 (use-package general)
 (use-package emacs
   :custom
@@ -49,7 +48,7 @@
   ;;(recentf-mode t) ;; Enable recent file mode
 
   ;;(global-visual-line-mode t)           ;; Enable truncated lines
-  ;;(display-line-numbers-type 'relative) ;; Relative line numbers
+  (display-line-numbers-type 'relative) ;; Relative line numbers
   (global-display-line-numbers-mode t)  ;; Display line numbers
 
   (mouse-wheel-progressive-speed nil) ;; Disable progressive speed when scrolling
@@ -170,6 +169,10 @@
          (magit-pre-refresh  . diff-hl-magit-pre-refresh)
          (magit-post-refresh . diff-hl-magit-post-refresh))
   :init (global-diff-hl-mode))
+(use-package orderless
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
 
 (use-package corfu
   ;; Optional customizations
@@ -225,17 +228,7 @@
   ;;(add-to-list 'completion-at-point-functions #'cape-rfc1345) ;; Complete Unicode char using RFC 1345 mnemonics
   )
 
-(use-package orderless
-  :custom
-  (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles basic partial-completion)))))
-
 (savehist-mode) ;; Enables save history mode
-
-(use-package marginalia
-  :after vertico
-  :init
-  (marginalia-mode))
 
 (use-package nerd-icons-completion
   :after marginalia

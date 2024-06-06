@@ -32,7 +32,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-gruvbox)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -74,3 +74,31 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+(setq projectile-project-search-path '("~/workspace"))
+;; Copilot
+(use-package! copilot
+  :hook (prog-mode . copilot-mode)
+  :bind (:map copilot-completion-map
+              ("<tab>" . 'copilot-accept-completion)
+              ("TAB" . 'copilot-accept-completion)
+              ("C-TAB" . 'copilot-accept-completion-by-word)
+              ("C-<tab>" . 'copilot-accept-completion-by-word)))
+;; Function to check if deno.json exists in the project root
+(defun my/deno-project-p ()
+  "Check if the current project is a Deno project."
+  (when (projectile-project-root)
+    (file-exists-p (concat (projectile-project-root) "deno.json"))))
+
+;; Use tsserver by default, but switch to deno-ls if deno.json is present
+(after! lsp-mode
+  (setq lsp-clients-typescript-server "tsserver")
+  (add-hook 'typescript-mode-hook
+            (lambda ()
+              (if (my/deno-project-p)
+                  (progn
+                    (setq lsp-clients-typescript-server "deno-ls")
+                    (lsp))
+                (progn
+                  (setq lsp-clients-typescript-server "tsserver")
+                  (lsp))))))
+
